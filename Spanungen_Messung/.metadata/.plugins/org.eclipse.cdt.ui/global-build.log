@@ -1,0 +1,91 @@
+10:59:22 **** Incremental Build of configuration Debug for project ADC_V0.1.1 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ADC_V0.1.1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Test\Spanungen_Messung\ADC_V0.1.1\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_V0.1.1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_V0.1.1.elf
+ 
+arm-none-eabi-size  ADC_V0.1.1.elf 
+arm-none-eabi-objdump -h -S ADC_V0.1.1.elf  > "ADC_V0.1.1.list"
+   text	   data	    bss	    dec	    hex	filename
+  40648	    468	   2300	  43416	   a998	ADC_V0.1.1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_V0.1.1.list
+ 
+10:59:26 **** Incremental Build of configuration Debug for project ADC_V0.1.1 ****
+make -j12 all 
+arm-none-eabi-size  ADC_V0.1.1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  40648	    468	   2300	  43416	   a998	ADC_V0.1.1.elf
+Finished building: default.size.stdout
+ 
+10:59:59 **** Incremental Build of configuration Debug for project ADC_V0.1.1 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ADC_V0.1.1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Test\Spanungen_Messung\ADC_V0.1.1\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_V0.1.1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_V0.1.1.elf
+ 
+arm-none-eabi-size  ADC_V0.1.1.elf 
+arm-none-eabi-objdump -h -S ADC_V0.1.1.elf  > "ADC_V0.1.1.list"
+   text	   data	    bss	    dec	    hex	filename
+  40656	    468	   2300	  43424	   a9a0	ADC_V0.1.1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_V0.1.1.list
+ 
+11:00:16 **** Incremental Build of configuration Debug for project ADC_V0.1.1 ****
+make -j12 all 
+arm-none-eabi-size  ADC_V0.1.1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  40656	    468	   2300	  43424	   a9a0	ADC_V0.1.1.elf
+Finished building: default.size.stdout
+ 
+11:02:37 **** Incremental Build of configuration Debug for project ADC_V0.1.1 ****
+make -j12 all 
+arm-none-eabi-size  ADC_V0.1.1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  40656	    468	   2300	  43424	   a9a0	ADC_V0.1.1.elf
+Finished building: default.size.stdout
+ 
+11:02:42 **** Incremental Build of configuration Debug for project ADC_V0.1.1 ****
+make -j12 all 
+arm-none-eabi-size  ADC_V0.1.1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  40656	    468	   2300	  43424	   a9a0	ADC_V0.1.1.elf
+Finished building: default.size.stdout
+ 
+11:11:20 **** Incremental Build of configuration Debug for project ADC_V0.1.1 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "ADC_V0.1.1.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Test\Spanungen_Messung\ADC_V0.1.1\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_V0.1.1.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_V0.1.1.elf
+ 
+arm-none-eabi-size  ADC_V0.1.1.elf 
+arm-none-eabi-objdump -h -S ADC_V0.1.1.elf  > "ADC_V0.1.1.list"
+   text	   data	    bss	    dec	    hex	filename
+  40656	    468	   2300	  43424	   a9a0	ADC_V0.1.1.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_V0.1.1.list
+ 
+11:12:25 **** Incremental Build of configuration Debug for project ADC_V0.1.1 ****
+make -j12 all 
+arm-none-eabi-size  ADC_V0.1.1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  40656	    468	   2300	  43424	   a9a0	ADC_V0.1.1.elf
+Finished building: default.size.stdout
+ 
+11:12:28 **** Incremental Build of configuration Debug for project ADC_V0.1.1 ****
+make -j12 all 
+arm-none-eabi-size  ADC_V0.1.1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  40656	    468	   2300	  43424	   a9a0	ADC_V0.1.1.elf
+Finished building: default.size.stdout
+ 
+11:13:12 **** Incremental Build of configuration Debug for project ADC_V0.1.1 ****
+make -j12 all 
+arm-none-eabi-size  ADC_V0.1.1.elf 
+   text	   data	    bss	    dec	    hex	filename
+  40656	    468	   2300	  43424	   a9a0	ADC_V0.1.1.elf
+Finished building: default.size.stdout
+ 
