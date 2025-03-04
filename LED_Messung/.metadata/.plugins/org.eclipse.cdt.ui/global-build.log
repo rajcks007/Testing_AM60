@@ -144,3 +144,10 @@ Finished building: default.size.stdout
  
 Finished building: LED.list
  
+15:33:45 **** Incremental Build of configuration Debug for project LED ****
+make -j12 all 
+arm-none-eabi-size  LED.elf 
+   text	   data	    bss	    dec	    hex	filename
+  19652	     92	   2140	  21884	   557c	LED.elf
+Finished building: default.size.stdout
+ 

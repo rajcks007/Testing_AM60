@@ -1,0 +1,48 @@
+/*
+ * LCD16x2_cfg.h
+ *
+ *  Created on: Feb 19, 2025
+ *      Author: raj
+ */
+
+#ifndef INC_LCD16X2_CFG_H_
+#define INC_LCD16X2_CFG_H_
+
+#include "main.h"
+#include "lcd.h"
+
+typedef struct
+{
+	// LCD Module Instance Index
+	uint8_t LCD16X2_Instance;
+
+	// LCD Pin: D4
+	GPIO_TypeDef * D4_GPIOx;
+	uint16_t D4_PINx;
+
+	// LCD Pin: D5
+	GPIO_TypeDef * D5_GPIOx;
+	uint16_t D5_PINx;
+
+	// LCD Pin: D6
+	GPIO_TypeDef * D6_GPIOx;
+	uint16_t D6_PINx;
+
+	// LCD Pin: D7
+	GPIO_TypeDef * D7_GPIOx;
+	uint16_t D7_PINx;
+
+	// LCD Pin: EN
+	GPIO_TypeDef * EN_GPIOx;
+	uint16_t EN_PINx;
+
+	// LCD Pin: RS
+	GPIO_TypeDef * RS_GPIOx;
+	uint16_t RS_PINx;
+
+}LCD16X2_CfgType;
+
+extern const LCD16X2_CfgType LCD16X2_CfgParam[LCD16X2_MAX];
+
+
+#endif /* INC_LCD16X2_CFG_H_ */

@@ -1,0 +1,89 @@
+11:24:43 **** Incremental Build of configuration Debug for project battery_0 ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -IC:/Users/raj/STM32Cube/Repository/STM32Cube_FW_L4_V1.18.1/Drivers/STM32L4xx_HAL_Driver/Inc -IC:/Users/raj/STM32Cube/Repository/STM32Cube_FW_L4_V1.18.1/Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -IC:/Users/raj/STM32Cube/Repository/STM32Cube_FW_L4_V1.18.1/Drivers/CMSIS/Device/ST/STM32L4xx/Include -IC:/Users/raj/STM32Cube/Repository/STM32Cube_FW_L4_V1.18.1/Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:116:48: error: 'reg' undeclared (first use in this function)
+  116 |                 HAL_I2C_Mem_Read(&hi2c1, 0x40, reg, I2C_MEMADD_SIZE_8BIT, &data, 1, HAL_MAX_DELAY);
+      |                                                ^~~
+../Core/Src/main.c:116:48: note: each undeclared identifier is reported only once for each function it appears in
+../Core/Src/main.c:116:76: error: 'data' undeclared (first use in this function)
+  116 |                 HAL_I2C_Mem_Read(&hi2c1, 0x40, reg, I2C_MEMADD_SIZE_8BIT, &data, 1, HAL_MAX_DELAY);
+      |                                                                            ^~~~
+../Core/Src/main.c:118:85: error: 'i2c_buff' undeclared (first use in this function)
+  118 |                         HAL_I2C_Mem_Read(&hi2c1, 0x40, 0x01, I2C_MEMADD_SIZE_8BIT, &i2c_buff[1], 1, HAL_MAX_DELAY);
+      |                                                                                     ^~~~~~~~
+../Core/Src/main.c:124:25: warning: implicit declaration of function 'snprintf' [-Wimplicit-function-declaration]
+  124 |                         snprintf(msg, sizeof(msg), " %d, %d, %d, %d \r\n", i2c_buff[1], i2c_buff[2], i2c_buff[3], i2c_buff[4]);
+      |                         ^~~~~~~~
+../Core/Src/main.c:21:1: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+   20 | #include "main.h"
+  +++ |+#include <stdio.h>
+   21 | 
+../Core/Src/main.c:124:25: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+  124 |                         snprintf(msg, sizeof(msg), " %d, %d, %d, %d \r\n", i2c_buff[1], i2c_buff[2], i2c_buff[3], i2c_buff[4]);
+      |                         ^~~~~~~~
+../Core/Src/main.c:124:25: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+../Core/Src/main.c:124:34: error: 'msg' undeclared (first use in this function)
+  124 |                         snprintf(msg, sizeof(msg), " %d, %d, %d, %d \r\n", i2c_buff[1], i2c_buff[2], i2c_buff[3], i2c_buff[4]);
+      |                                  ^~~
+../Core/Src/main.c:125:67: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+  125 |                         HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
+      |                                                                   ^~~~~~
+../Core/Src/main.c:21:1: note: include '<string.h>' or provide a declaration of 'strlen'
+   20 | #include "main.h"
+  +++ |+#include <string.h>
+   21 | 
+../Core/Src/main.c:125:67: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
+  125 |                         HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
+      |                                                                   ^~~~~~
+../Core/Src/main.c:125:67: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:129:25: warning: incompatible implicit declaration of built-in function 'snprintf' [-Wbuiltin-declaration-mismatch]
+  129 |                         snprintf(msg, sizeof(msg), " error in register \r\n");
+      |                         ^~~~~~~~
+../Core/Src/main.c:129:25: note: include '<stdio.h>' or provide a declaration of 'snprintf'
+../Core/Src/main.c:130:67: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
+  130 |                         HAL_UART_Transmit(&huart2, (uint8_t*)msg, strlen(msg), HAL_MAX_DELAY);
+      |                                                                   ^~~~~~
+../Core/Src/main.c:130:67: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:191:13: error: invalid storage class for function 'MX_I2C1_Init'
+  191 | static void MX_I2C1_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:239:13: error: invalid storage class for function 'MX_USART2_UART_Init'
+  239 | static void MX_USART2_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:274:13: error: invalid storage class for function 'MX_GPIO_Init'
+  274 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:323:1: error: expected declaration or statement at end of input
+  323 | }
+      | ^
+../Core/Src/main.c: At top level:
+../Core/Src/main.c:54:13: warning: 'MX_GPIO_Init' used but never defined
+   54 | static void MX_GPIO_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:55:13: warning: 'MX_USART2_UART_Init' used but never defined
+   55 | static void MX_USART2_UART_Init(void);
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:56:13: warning: 'MX_I2C1_Init' used but never defined
+   56 | static void MX_I2C1_Init(void);
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:314:6: warning: 'Error_Handler' defined but not used [-Wunused-function]
+  314 | void Error_Handler(void)
+      |      ^~~~~~~~~~~~~
+../Core/Src/main.c:274:13: warning: 'MX_GPIO_Init' defined but not used [-Wunused-function]
+  274 | static void MX_GPIO_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:239:13: warning: 'MX_USART2_UART_Init' defined but not used [-Wunused-function]
+  239 | static void MX_USART2_UART_Init(void)
+      |             ^~~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:191:13: warning: 'MX_I2C1_Init' defined but not used [-Wunused-function]
+  191 | static void MX_I2C1_Init(void)
+      |             ^~~~~~~~~~~~
+../Core/Src/main.c:141:6: warning: 'SystemClock_Config' defined but not used [-Wunused-function]
+  141 | void SystemClock_Config(void)
+      |      ^~~~~~~~~~~~~~~~~~
+make: *** [Core/Src/subdir.mk:34: Core/Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+
+11:24:43 Build Failed. 9 errors, 14 warnings. (took 259ms)
+

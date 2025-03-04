@@ -1,0 +1,21 @@
+14:16:40 **** Incremental Build of configuration Debug for project filter ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I"C:/Users/raj/Project/Project/Tenserflow_lite/tflite-micro" -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:169:17: warning: unused variable 'low_pass_output' [-Wunused-variable]
+  169 |           float low_pass_output = low_pass_filter(high_pass_output);
+      |                 ^~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "filter.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Filter\filter\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="filter.map" -Wl,--gc-sections -static -L"C:\Users\raj\Project\Project\Tenserflow_lite\tflite-micro" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: filter.elf
+ 
+arm-none-eabi-size  filter.elf 
+arm-none-eabi-objdump -h -S filter.elf  > "filter.list"
+   text	   data	    bss	    dec	    hex	filename
+  40672	    500	   2276	  43448	   a9b8	filter.elf
+Finished building: default.size.stdout
+ 
+Finished building: filter.list
+ 
+
+14:16:41 Build Finished. 0 errors, 1 warnings. (took 807ms)
+

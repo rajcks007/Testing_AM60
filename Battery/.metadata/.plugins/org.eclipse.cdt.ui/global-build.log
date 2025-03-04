@@ -1,0 +1,476 @@
+15:40:43 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-size  battery.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+15:40:48 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-size  battery.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+15:42:18 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+15:43:33 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+15:43:55 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-size  battery.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+15:44:40 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+15:45:37 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-size  battery.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+15:47:24 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-size  battery.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+15:47:38 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-size  battery.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+15:49:31 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37524	    468	   2124	  40116	   9cb4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+15:49:49 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-size  battery.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37524	    468	   2124	  40116	   9cb4	battery.elf
+Finished building: default.size.stdout
+ 
+15:53:35 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37524	    468	   2124	  40116	   9cb4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+15:55:16 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37524	    468	   2124	  40116	   9cb4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+15:56:31 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37524	    468	   2124	  40116	   9cb4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+15:56:46 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-size  battery.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37524	    468	   2124	  40116	   9cb4	battery.elf
+Finished building: default.size.stdout
+ 
+15:57:43 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+16:01:29 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+16:03:25 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+16:04:10 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+16:04:44 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37540	    468	   2124	  40132	   9cc4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:07:13 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37548	    468	   2124	  40140	   9ccc	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:07:53 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37532	    468	   2124	  40124	   9cbc	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:08:35 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37556	    468	   2124	  40148	   9cd4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:11:09 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37548	    468	   2124	  40140	   9ccc	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:11:38 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37532	    468	   2124	  40124	   9cbc	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:14:28 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37556	    468	   2124	  40148	   9cd4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:15:13 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-size  battery.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37556	    468	   2124	  40148	   9cd4	battery.elf
+Finished building: default.size.stdout
+ 
+11:19:22 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37556	    468	   2124	  40148	   9cd4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:21:50 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37548	    468	   2124	  40140	   9ccc	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:25:42 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37532	    468	   2124	  40124	   9cbc	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:31:14 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37612	    468	   2124	  40204	   9d0c	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:33:08 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-size  battery.elf 
+   text	   data	    bss	    dec	    hex	filename
+  37612	    468	   2124	  40204	   9d0c	battery.elf
+Finished building: default.size.stdout
+ 
+11:34:44 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37692	    468	   2124	  40284	   9d5c	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:36:02 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\STM32cubeIDE\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  37692	    468	   2124	  40284	   9d5c	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+10:31:06 **** Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  39316	    468	   2180	  41964	   a3ec	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:43:02 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  39316	    468	   2196	  41980	   a3fc	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:43:44 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  39316	    468	   2196	  41980	   a3fc	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:44:23 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  39316	    468	   2188	  41972	   a3f4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 
+11:45:04 **** Incremental Build of configuration Debug for project battery ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L476xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "battery.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Battery\battery\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="battery.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: battery.elf
+ 
+arm-none-eabi-size  battery.elf 
+arm-none-eabi-objdump -h -S battery.elf  > "battery.list"
+   text	   data	    bss	    dec	    hex	filename
+  39316	    468	   2188	  41972	   a3f4	battery.elf
+Finished building: default.size.stdout
+ 
+Finished building: battery.list
+ 

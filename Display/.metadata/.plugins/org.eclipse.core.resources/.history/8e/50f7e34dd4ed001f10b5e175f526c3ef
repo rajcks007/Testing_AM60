@@ -1,0 +1,334 @@
+/*
+ * LCD16x2.c
+ *
+ *  Created on: Feb 18, 2025
+ *      Author: raj
+ */
+
+
+#include <stdio.h>
+#include <stdbool.h>
+#include <stm32f3xx_hal.h>
+#include <stm32f3xx_hal_gpio.h>
+
+#include "LCD16x2.h"
+
+//LCD port #defines:
+
+#define LCD_EN_HIGH LCD_CTRLPORT_OUT |= _BV(LCD_CTRL_EN)
+#define LCD_EN_LOW  LCD_CTRLPORT_OUT &= ~_BV(LCD_CTRL_EN)
+#define LCD_RW_HIGH LCD_CTRLPORT_OUT |= _BV(LCD_CTRL_RW)
+#define LCD_RW_LOW  LCD_CTRLPORT_OUT &= ~_BV(LCD_CTRL_RW)
+#define LCD_RS_HIGH LCD_CTRLPORT_OUT |= _BV(LCD_CTRL_RS)
+#define LCD_RS_LOW  LCD_CTRLPORT_OUT &= ~_BV(LCD_CTRL_RS)
+#define LCD_RS_CMD	LCD_RS_LOW
+#define LCD_RS_DATA	LCD_RS_HIGH
+
+
+// LCD command definitions:
+
+// commands
+#define LCD_CLEARDISPLAY	0x01
+#define LCD_RETURNHOME		0x02
+#define LCD_ENTRYMODESET	0x04
+#define LCD_DISPLAYCONTROL	0x08
+#define LCD_CURSORSHIFT		0x10
+#define LCD_FUNCTIONSET		0x20
+#define LCD_SETCGRAMADDR	0x40
+#define LCD_SETDDRAMADDR	0x80
+
+// flags for display entry mode
+#define LCD_ENTRYRIGHT		0x00
+#define LCD_ENTRYLEFT		0x02
+#define LCD_ENTRYSHIFTINCREMENT 0x01
+#define LCD_ENTRYSHIFTDECREMENT 0x00
+
+// flags for display on/off control
+#define LCD_DISPLAYON		0x04
+#define LCD_DISPLAYOFF		0x00
+#define LCD_CURSORON		0x02
+#define LCD_CURSOROFF		0x00
+#define LCD_BLINKON			0x01
+#define LCD_BLINKOFF		0x00
+
+// flags for display/cursor shift
+#define LCD_DISPLAYMOVE		0x08
+#define LCD_CURSORMOVE		0x00
+#define LCD_MOVERIGHT		0x04
+#define LCD_MOVELEFT		0x00
+
+// flags for function set
+#define LCD_8BITMODE		0x10
+#define LCD_4BITMODE		0x00
+#define LCD_2LINE			0x08
+#define LCD_1LINE			0x00
+#define LCD_5x10DOTS		0x04
+#define LCD_5x8DOTS			0x00
+
+#define NUMROWS				2
+#define NUMCOLS				16
+
+// private prototypes:
+void	setRowOffsets			(int row0, int row1, int row2, int row3);
+void	LCD_WriteCmdReg			(uint8_t Byte);
+void	LCD_WriteCmdReg_NoBusy	(uint8_t Byte);
+void	LCD_WriteDataReg		(uint8_t Byte);
+uint8_t LCD_ReadCmdReg			(void);
+void	LCD_WriteDataReg		(uint8_t Byte);
+bool	LCD_Busy				(void);
+void	LCD_WaitBusy			(void);
+void	LCD_EnablePulse			(void);
+
+
+
+//--------- Functions ------------------------------------
+/*LCD connections:
+EN:		PC5
+R/#W:	PC6
+RS:		PC7
+Data 0..7:	PA0..PA7
+*/
+
+//
+uint8_t _row_offsets[4];
+
+
+
+//----------------------------------------
+void LCD_Init (void)
+{
+	LCD_CTRLPORT_DIR |= (_BV(LCD_CTRL_EN) | _BV(LCD_CTRL_RW) | _BV(LCD_CTRL_RS));	// Set ctrl lines EN, RS and RW to output
+	LCD_EN_LOW;					// Enable triggers H>L
+	LCD_RS_LOW;
+	LCD_RW_LOW;
+	//LCD_DATAPORT_DIR = 0x00;	// input
+	//LCD_DATAPORT_OUT = 0x11;	// activate pullups for input
+	LCD_DATAPORT_DIR = 0xFF;	// output
+	LCD_DATAPORT_OUT = 0x00;	// init to 0
+	cli();
+	HAL_Delay(500); // wait for complete power up
+	for (uint8_t i = 0; i < 3;i++)
+	{
+		LCD_WriteCmdReg_NoBusy(0x30);	// function set	0 0 1 1 * * * * for init to 8bit-interface
+		_delay_ms(4);			//
+		/*
+		D7.............D0
+		0 0 1 DL N F — — Sets interface data length(DL), number of display lines (N), and character font (F).
+		DL = 1: 8 bits,			DL = 0:  4 bits
+		N = 1:	2 lines,		N = 0:  1 line
+		F = 1:	5 x 10 dots,	F = 0:  5 x 8 dots
+		*/
+	}
+	LCD_WriteCmdReg_NoBusy(0x38);	// function set	0 0 1 1 1 0 0 0: 8bit, 2 lines, 5x8px charset
+	_delay_ms(4);
+	// from here according to datasheet busy should be useable
+	LCD_WriteCmdReg_NoBusy(0x08);	// Display control: Display off
+	_delay_ms(4);
+	LCD_WriteCmdReg_NoBusy(0x01);	// Display clear
+	_delay_ms(4);
+	LCD_WriteCmdReg_NoBusy(0x06);	// Entry mode increment, no shift
+	_delay_ms(4);
+	LCD_WriteCmdReg_NoBusy(0x0C);	// Display on control: Display on, cursor off, blink off
+	//LCD_WriteCmdReg_NoBusy(0x0F);	// Display on control: Display on, cursor on, blink on
+	LCD_Home();
+	LCD_Clear();
+	sei();
+	setRowOffsets(0x00, 0x40, 0x00 + NUMCOLS, 0x40 + NUMCOLS);
+}
+
+
+//--------------------------------------------------------
+void setRowOffsets(int row0, int row1, int row2, int row3)
+{
+	_row_offsets[0] = row0;
+	_row_offsets[1] = row1;
+	_row_offsets[2] = row2;
+	_row_offsets[3] = row3;
+}
+
+
+//------------------------------
+void	LCD_EnablePulse	(void)
+{
+	//cli();
+	LCD_EN_LOW;
+	HAL_Delay(1);
+	LCD_EN_HIGH;
+	HAL_Delay(1);
+	LCD_EN_LOW;
+	//_delay_us(100);
+	//sei();
+}
+
+//----------------------------------------
+void LCD_SetCursor(uint8_t col, uint8_t row)
+{
+	const size_t max_rows = 2;
+	const size_t max_cols = 16;
+
+	if ( col >= max_cols )
+		col = max_cols - 1;    // we count cols starting w/0
+	if ( row >= max_rows )
+		row = max_rows - 1;    // we count rows starting w/0
+	LCD_WriteCmdReg(LCD_SETDDRAMADDR | (col + _row_offsets[row]));
+}
+
+//----------------------------------------
+void LCD_WriteCmdReg (uint8_t Byte)
+{
+	LCD_WaitBusy();
+	cli();
+	LCD_DATAPORT_DIR = 0xFF;
+	LCD_DATAPORT_OUT = Byte;
+	LCD_RS_CMD;
+	LCD_RW_LOW;
+	//_delay_us(1); // Setup time RS/RW to EN min. 40ns
+	//LCD_EN_HIGH;
+	//_delay_us(1);
+	//LCD_EN_LOW;
+	LCD_EnablePulse();
+	sei();
+}
+
+
+//----------------------------------------
+void LCD_WriteCmdReg_NoBusy (uint8_t Byte) // used for initialization when busy is nonfunctional
+{
+	cli();
+	LCD_DATAPORT_DIR = 0xFF;
+	LCD_DATAPORT_OUT = Byte;
+	LCD_RS_CMD;
+	LCD_RW_LOW;
+	LCD_EnablePulse();
+	//_delay_us(1);	// Setup time RS/RW to EN min. 40ns
+	//LCD_EN_HIGH;
+	//_delay_us(1);
+	//LCD_EN_LOW;
+	sei();
+}
+
+
+//----------------------------------------
+uint8_t LCD_ReadCmdReg (void)
+{	uint8_t inByte;
+	LCD_WaitBusy();
+	cli();
+	LCD_DATAPORT_DIR = 0x00;
+	LCD_RS_CMD;
+	LCD_RW_HIGH;
+
+
+	//LCD_EnablePulse(); // Doesn't work in read, for data needs to be read during high pahse of EN
+	HAL_Delay(1); // Setup time RS/RW to EN min. 40ns
+	LCD_EN_LOW;
+	HAL_Delay(1);
+	LCD_EN_HIGH;
+	HAL_Delay(1);
+	inByte = LCD_DATAPORT_IN;
+	LCD_EN_LOW;
+	//_delay_us(100);
+
+	LCD_DATAPORT_DIR = 0xFF; // for better traceability during development: set to defined level
+	LCD_DATAPORT_OUT = 0x00;
+	sei();
+	return inByte;
+
+}
+
+//----------------------------------------
+void LCD_WriteDataReg (uint8_t Byte)
+{
+	LCD_WaitBusy();
+	cli();
+	LCD_DATAPORT_DIR = 0xFF;
+	LCD_DATAPORT_OUT = Byte;
+	LCD_RS_DATA;
+	LCD_RW_LOW;		// write
+	LCD_EnablePulse();
+	HAL_Delay(1);	// Setup time RS/RW to EN min. 40ns
+	LCD_EN_HIGH;
+	HAL_Delay(1);
+	LCD_EN_LOW;
+
+	sei();
+}
+
+
+//----------------------------------------
+bool LCD_Busy(void)
+{
+	uint8_t inByte;
+	// read cmd explicitly NOT calling LCD_ReadCmdReg, otherwise infinite loop
+	cli();
+	LCD_DATAPORT_DIR = 0x00;
+	LCD_RS_CMD;
+	LCD_RW_HIGH;
+	HAL_Delay(1);
+
+	LCD_EN_HIGH;
+	HAL_Delay(1);
+	inByte = LCD_DATAPORT_IN;
+	LCD_EN_LOW;
+
+	LCD_DATAPORT_DIR = 0xFF; // for better traceability during development: set to defined level
+	LCD_DATAPORT_OUT = 0x00;
+	sei();
+ 	if (inByte & 0x80) // D7 = busy
+ 		return true;
+ 	else
+ 		return false;
+}
+
+
+//-----------------------------------------------
+void LCD_WaitBusy(void) // waits as long as LCD is busy
+{
+	uint8_t inByte;
+	LCD_DATAPORT_DIR = 0x00;
+	LCD_RS_CMD;
+	LCD_RW_HIGH;
+	do
+	{
+		LCD_EN_HIGH;
+		HAL_Delay(1);
+		inByte = LCD_DATAPORT_IN;
+		LCD_EN_LOW;
+	} while (inByte & 0x80);
+	LCD_DATAPORT_DIR = 0xFF; // for better traceability during development: set to defined level
+	LCD_DATAPORT_OUT = 0x00;
+	return;
+}
+
+
+//----------------------------------------
+void LCD_Home (void)
+{
+	LCD_WriteCmdReg(0x02);
+}
+
+
+//----------------------------------------
+void LCD_Clear (void)
+{
+	LCD_WriteCmdReg(0x01);
+}
+
+
+//----------------------------------------
+void LCD_PrintStr(char * Str)
+{
+	while (*Str!=0)
+	{
+		LCD_WriteDataReg((uint8_t)*Str);
+		Str++;
+	}
+}
+// End LCD -------------------------------
+
+
+//----------------------------------------
+void LCD_PrintCh(char ch)
+{
+	LCD_WriteDataReg((uint8_t)ch);
+}
+// End LCD -------------------------------
