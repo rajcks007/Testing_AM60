@@ -1,10 +1,17 @@
-10:52:03 **** Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
+14:21:33 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
 make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "2025_02_20_Fast_AquaM60_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Aqua_M60\2025_02_20_Fast_AquaM60_test\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="2025_02_20_Fast_AquaM60_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: 2025_02_20_Fast_AquaM60_test.elf
+ 
 arm-none-eabi-size  2025_02_20_Fast_AquaM60_test.elf 
+arm-none-eabi-objdump -h -S 2025_02_20_Fast_AquaM60_test.elf  > "2025_02_20_Fast_AquaM60_test.list"
    text	   data	    bss	    dec	    hex	filename
-  22304	     12	   1972	  24288	   5ee0	2025_02_20_Fast_AquaM60_test.elf
+  23156	     12	   2052	  25220	   6284	2025_02_20_Fast_AquaM60_test.elf
 Finished building: default.size.stdout
  
+Finished building: 2025_02_20_Fast_AquaM60_test.list
+ 
 
-10:52:04 Build Finished. 0 errors, 0 warnings. (took 424ms)
+14:21:35 Build Finished. 0 errors, 0 warnings. (took 1s.609ms)
 

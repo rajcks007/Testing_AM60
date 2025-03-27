@@ -5,6 +5,7 @@ configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:2025_02_20_Fast_
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:2025_02_20_Fast_AquaM60_test\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:2025_02_20_Fast_AquaM60_test\ Debug/activeLaunchTarget=null\:---
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:2025_02_25_Fast_RasPi_cam\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Button_V0.1\ Debug\ (1)/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Button_V0.1\ Debug\ (1)/activeLaunchTarget=null\:---
 org.eclipse.launchbar.core.descriptorType.default\:2025_02_20_Fast_AquaM60_test\ Debug/activeLaunchMode=run

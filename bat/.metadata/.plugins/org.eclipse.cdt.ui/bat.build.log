@@ -1,0 +1,17 @@
+09:59:09 **** Incremental Build of configuration Debug for project bat ****
+make -j12 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "bat.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\bat\bat\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="bat.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -u _printf_float -u _scanf_float -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: bat.elf
+ 
+arm-none-eabi-size  bat.elf 
+arm-none-eabi-objdump -h -S bat.elf  > "bat.list"
+   text	   data	    bss	    dec	    hex	filename
+  38612	    468	   2188	  41268	   a134	bat.elf
+Finished building: default.size.stdout
+ 
+Finished building: bat.list
+ 
+
+09:59:14 Build Finished. 0 errors, 0 warnings. (took 4s.862ms)
+

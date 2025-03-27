@@ -23,7 +23,6 @@
 /* USER CODE BEGIN Includes */
 #include <string.h>
 #include <stdio.h>
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -189,8 +188,9 @@ int main(void)
 	  }
 
 	  else {
+		  HAL_GPIO_WritePin(GPIOC, R1_Pin, GPIO_PIN_RESET);
+		  HAL_GPIO_WritePin(GPIOC, R2_Pin, GPIO_PIN_RESET);
 		  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
-		  HAL_Delay(2500);
 
 	  }
 
@@ -614,7 +614,7 @@ void voltage_messung(void){
 	HAL_ADC_PollForConversion(&hadc1, 100); // Poll ADC1 Peripheral
 	adc_values[0] = HAL_ADC_GetValue(&hadc1); // Read ADC Conversion Resulte
 	if(adc_values[0] > 2)
-			return send_msg("voltage less then 2 \r\n");
+			return send_msg("voltage is ok \r\n");
 
 	HAL_ADC_Start(&hadc1); // Start ADC Conversion
 	HAL_ADC_PollForConversion(&hadc1, 100); // Poll ADC1 Peripheral
@@ -677,7 +677,7 @@ void screen_validate(void){
 				send_msg("screen is working OK \r\n");
 			}
 			else if(data == 0x24){
-				send_msg("screen is not OK \r\n");
+				send_msg("screen is OK \r\n");
 			}
 			else send_msg("Reset STM Board \r\n");
 

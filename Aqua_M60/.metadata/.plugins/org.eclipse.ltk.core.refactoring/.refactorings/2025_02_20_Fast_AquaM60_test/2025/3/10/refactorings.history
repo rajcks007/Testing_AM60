@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;2025_02_20_Fast_AquaM60_test/Core/Src/1602_i2c.c&apos; to &apos;liquidcrystal_i2c.c&apos;" description="Rename resource &apos;1602_i2c.c&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Src/1602_i2c.c" name="liquidcrystal_i2c.c" stamp="1741101033844" updateReferences="true"/>
+</session>
