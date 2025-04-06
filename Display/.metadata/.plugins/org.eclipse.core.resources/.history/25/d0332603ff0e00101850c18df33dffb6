@@ -155,7 +155,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_GPIO_WritePin(RW_PORT, RW_PIN, GPIO_PIN_RESET);
   lcd_init();
-  lcd_put_cur(0, 0);
+  lcd_put_cur(1, 0);
   lcd_send_string("HELLO ");
   lcd_send_string("WORLD ");
 //  lcd_put_cur(1, 0);
@@ -379,7 +379,7 @@ void lcd_put_cur(int row, int col)
 void lcd_init (void)
 {
     // 4 bit initialisation
-    HAL_Delay(500);  // wait for >40ms
+    HAL_Delay(50);  // wait for >40ms
     lcd_send_cmd (0x30);
     HAL_Delay(5);  // wait for >4.1ms
     lcd_send_cmd (0x30);
