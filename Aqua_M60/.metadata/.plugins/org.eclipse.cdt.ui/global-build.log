@@ -1,86 +1,4 @@
-12:19:27 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'MX_GPIO_Init':
-../Core/Src/main.c:552:28: error: 'raspi_start_Pin' undeclared (first use in this function); did you mean 'cam_start_Pin'?
-  552 |   HAL_GPIO_WritePin(GPIOB, raspi_start_Pin|raspi_run_Pin, GPIO_PIN_RESET);
-      |                            ^~~~~~~~~~~~~~~
-      |                            cam_start_Pin
-../Core/Src/main.c:552:28: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/main.c:552:44: error: 'raspi_run_Pin' undeclared (first use in this function)
-  552 |   HAL_GPIO_WritePin(GPIOB, raspi_start_Pin|raspi_run_Pin, GPIO_PIN_RESET);
-      |                                            ^~~~~~~~~~~~~
-../Core/Src/main.c: In function 'screen_validate':
-../Core/Src/main.c:600:17: warning: unused variable 'RX_Buffer' [-Wunused-variable]
-  600 |         uint8_t RX_Buffer [2];
-      |                 ^~~~~~~~~
-make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
-"make -j12 all" terminated with exit code 2. Build might be incomplete.
-12:19:50 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'screen_validate':
-../Core/Src/main.c:601:17: warning: unused variable 'RX_Buffer' [-Wunused-variable]
-  601 |         uint8_t RX_Buffer [2];
-      |                 ^~~~~~~~~
-arm-none-eabi-gcc -o "2025_02_20_Fast_AquaM60_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Aqua_M60\2025_02_20_Fast_AquaM60_test\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="2025_02_20_Fast_AquaM60_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 2025_02_20_Fast_AquaM60_test.elf
- 
-arm-none-eabi-size  2025_02_20_Fast_AquaM60_test.elf 
-arm-none-eabi-objdump -h -S 2025_02_20_Fast_AquaM60_test.elf  > "2025_02_20_Fast_AquaM60_test.list"
-   text	   data	    bss	    dec	    hex	filename
-  24752	     92	   2532	  27376	   6af0	2025_02_20_Fast_AquaM60_test.elf
-Finished building: default.size.stdout
- 
-Finished building: 2025_02_20_Fast_AquaM60_test.list
- 
-12:22:56 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'MX_GPIO_Init':
-../Core/Src/main.c:554:28: error: 'raspi_start_Pin' undeclared (first use in this function); did you mean 'cam_start_Pin'?
-  554 |   HAL_GPIO_WritePin(GPIOB, raspi_start_Pin|raspi_run_Pin, GPIO_PIN_RESET);
-      |                            ^~~~~~~~~~~~~~~
-      |                            cam_start_Pin
-../Core/Src/main.c:554:28: note: each undeclared identifier is reported only once for each function it appears in
-../Core/Src/main.c:554:44: error: 'raspi_run_Pin' undeclared (first use in this function)
-  554 |   HAL_GPIO_WritePin(GPIOB, raspi_start_Pin|raspi_run_Pin, GPIO_PIN_RESET);
-      |                                            ^~~~~~~~~~~~~
-../Core/Src/main.c: In function 'screen_validate':
-../Core/Src/main.c:604:29: error: 'raspi_start_GPIO_Port' undeclared (first use in this function); did you mean 'cam_start_GPIO_Port'?
-  604 |         if(HAL_GPIO_ReadPin(raspi_start_GPIO_Port, raspi_start_Pin) == 1){
-      |                             ^~~~~~~~~~~~~~~~~~~~~
-      |                             cam_start_GPIO_Port
-../Core/Src/main.c:604:52: error: 'raspi_start_Pin' undeclared (first use in this function); did you mean 'cam_start_Pin'?
-  604 |         if(HAL_GPIO_ReadPin(raspi_start_GPIO_Port, raspi_start_Pin) == 1){
-      |                                                    ^~~~~~~~~~~~~~~
-      |                                                    cam_start_Pin
-../Core/Src/main.c:613:37: error: 'raspi_run_GPIO_Port' undeclared (first use in this function)
-  613 |                 if(HAL_GPIO_ReadPin(raspi_run_GPIO_Port, raspi_run_Pin) == 1)send_msg("raspberry pi is running \r\n");          // send message raspberry pi is running
-      |                                     ^~~~~~~~~~~~~~~~~~~
-../Core/Src/main.c:613:58: error: 'raspi_run_Pin' undeclared (first use in this function)
-  613 |                 if(HAL_GPIO_ReadPin(raspi_run_GPIO_Port, raspi_run_Pin) == 1)send_msg("raspberry pi is running \r\n");          // send message raspberry pi is running
-      |                                                          ^~~~~~~~~~~~~
-make: *** [Core/Src/subdir.mk:37: Core/Src/main.o] Error 1
-"make -j12 all" terminated with exit code 2. Build might be incomplete.
-12:23:37 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/display.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/display.d" -MT"Core/Src/display.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/display.o"
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc "../Core/Src/stm32f3xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f3xx_hal_msp.d" -MT"Core/Src/stm32f3xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f3xx_hal_msp.o"
-arm-none-eabi-gcc "../Core/Src/stm32f3xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/stm32f3xx_it.d" -MT"Core/Src/stm32f3xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/stm32f3xx_it.o"
-arm-none-eabi-gcc -o "2025_02_20_Fast_AquaM60_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Aqua_M60\2025_02_20_Fast_AquaM60_test\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="2025_02_20_Fast_AquaM60_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 2025_02_20_Fast_AquaM60_test.elf
- 
-arm-none-eabi-size  2025_02_20_Fast_AquaM60_test.elf 
-arm-none-eabi-objdump -h -S 2025_02_20_Fast_AquaM60_test.elf  > "2025_02_20_Fast_AquaM60_test.list"
-   text	   data	    bss	    dec	    hex	filename
-  24748	     92	   2532	  27372	   6aec	2025_02_20_Fast_AquaM60_test.elf
-Finished building: default.size.stdout
- 
-Finished building: 2025_02_20_Fast_AquaM60_test.list
- 
-12:24:47 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
+13:28:51 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
 make -j12 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "2025_02_20_Fast_AquaM60_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Aqua_M60\2025_02_20_Fast_AquaM60_test\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="2025_02_20_Fast_AquaM60_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -89,64 +7,15 @@ Finished building target: 2025_02_20_Fast_AquaM60_test.elf
 arm-none-eabi-size  2025_02_20_Fast_AquaM60_test.elf 
 arm-none-eabi-objdump -h -S 2025_02_20_Fast_AquaM60_test.elf  > "2025_02_20_Fast_AquaM60_test.list"
    text	   data	    bss	    dec	    hex	filename
-  24780	     92	   2532	  27404	   6b0c	2025_02_20_Fast_AquaM60_test.elf
+  27624	     92	   2532	  30248	   7628	2025_02_20_Fast_AquaM60_test.elf
 Finished building: default.size.stdout
  
 Finished building: 2025_02_20_Fast_AquaM60_test.list
  
-12:25:37 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
+13:28:58 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
 make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "2025_02_20_Fast_AquaM60_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Aqua_M60\2025_02_20_Fast_AquaM60_test\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="2025_02_20_Fast_AquaM60_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 2025_02_20_Fast_AquaM60_test.elf
- 
 arm-none-eabi-size  2025_02_20_Fast_AquaM60_test.elf 
-arm-none-eabi-objdump -h -S 2025_02_20_Fast_AquaM60_test.elf  > "2025_02_20_Fast_AquaM60_test.list"
    text	   data	    bss	    dec	    hex	filename
-  24748	     92	   2532	  27372	   6aec	2025_02_20_Fast_AquaM60_test.elf
+  27624	     92	   2532	  30248	   7628	2025_02_20_Fast_AquaM60_test.elf
 Finished building: default.size.stdout
- 
-Finished building: 2025_02_20_Fast_AquaM60_test.list
- 
-12:27:46 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "2025_02_20_Fast_AquaM60_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Aqua_M60\2025_02_20_Fast_AquaM60_test\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="2025_02_20_Fast_AquaM60_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 2025_02_20_Fast_AquaM60_test.elf
- 
-arm-none-eabi-size  2025_02_20_Fast_AquaM60_test.elf 
-arm-none-eabi-objdump -h -S 2025_02_20_Fast_AquaM60_test.elf  > "2025_02_20_Fast_AquaM60_test.list"
-   text	   data	    bss	    dec	    hex	filename
-  24748	     92	   2532	  27372	   6aec	2025_02_20_Fast_AquaM60_test.elf
-Finished building: default.size.stdout
- 
-Finished building: 2025_02_20_Fast_AquaM60_test.list
- 
-12:28:23 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "2025_02_20_Fast_AquaM60_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Aqua_M60\2025_02_20_Fast_AquaM60_test\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="2025_02_20_Fast_AquaM60_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 2025_02_20_Fast_AquaM60_test.elf
- 
-arm-none-eabi-size  2025_02_20_Fast_AquaM60_test.elf 
-arm-none-eabi-objdump -h -S 2025_02_20_Fast_AquaM60_test.elf  > "2025_02_20_Fast_AquaM60_test.list"
-   text	   data	    bss	    dec	    hex	filename
-  27572	     92	   2532	  30196	   75f4	2025_02_20_Fast_AquaM60_test.elf
-Finished building: default.size.stdout
- 
-Finished building: 2025_02_20_Fast_AquaM60_test.list
- 
-13:07:04 **** Incremental Build of configuration Debug for project 2025_02_20_Fast_AquaM60_test ****
-make -j12 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F303xE -c -I../Core/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc -I../Drivers/STM32F3xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F3xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-arm-none-eabi-gcc -o "2025_02_20_Fast_AquaM60_test.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\raj\Project\Project\Test\Aqua_M60\2025_02_20_Fast_AquaM60_test\STM32F303RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="2025_02_20_Fast_AquaM60_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: 2025_02_20_Fast_AquaM60_test.elf
- 
-arm-none-eabi-size  2025_02_20_Fast_AquaM60_test.elf 
-arm-none-eabi-objdump -h -S 2025_02_20_Fast_AquaM60_test.elf  > "2025_02_20_Fast_AquaM60_test.list"
-   text	   data	    bss	    dec	    hex	filename
-  27572	     92	   2532	  30196	   75f4	2025_02_20_Fast_AquaM60_test.elf
-Finished building: default.size.stdout
- 
-Finished building: 2025_02_20_Fast_AquaM60_test.list
  

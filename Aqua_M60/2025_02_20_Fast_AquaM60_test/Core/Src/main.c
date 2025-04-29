@@ -634,18 +634,6 @@ void screen_validate(void){
 
 void voltage_messung(void){
 
-	for(int i = 0; i < 20; i++){
-		HAL_ADC_Start(&hadc2); // Start ADC Conversion
-		HAL_ADC_PollForConversion(&hadc2, HAL_MAX_DELAY); // Poll ADC1 Peripheral
-		led = HAL_ADC_GetValue(&hadc2); // Read ADC Conversion Resulte
-		HAL_ADC_Stop(&hadc2);
-
-		led_sum += led;
-	}
-
-	led_avg = led_sum / 20;
-
-
 	for (int i = 0; i < NUM_CHANNELS; i++) {
 	    adc_dma_buffer[i] = 0;
 	}
@@ -657,20 +645,24 @@ void voltage_messung(void){
 
 	while((HAL_GetTick()-start_time) < 2000){
 
+		HAL_ADC_Start(&hadc2); // Start ADC Conversion
+		HAL_ADC_PollForConversion(&hadc2, HAL_MAX_DELAY); // Poll ADC1 Peripheral
+		led = HAL_ADC_GetValue(&hadc2); // Read ADC Conversion Resulte
+		HAL_ADC_Stop(&hadc2);
 
 		// You can use adc_dma_buffer[0] and adc_dma_buffer[1] any time!
 		  	 plus_5 = adc_dma_buffer[0];
 		  	 vcc = adc_dma_buffer[1];
 		  	 min_5 = adc_dma_buffer[2];
 
-		sprintf(volt, "/* %d, %d, %d */ \r\n", vcc,  plus_5, min_5);
+		sprintf(volt, "/* %d, %d, %d, %d */ \r\n", led, vcc,  plus_5, min_5);
 		HAL_UART_Transmit(&huart2, (uint8_t*)volt, strlen(volt), HAL_MAX_DELAY);
 
+		led_sum += led;
 		vcc_sum += vcc;
 		min_5_sum += min_5;
 		plus_5_sum += plus_5;
 		sample_count++;
-
 
 	}
 
@@ -679,6 +671,7 @@ void voltage_messung(void){
 
 	// Calculate averages
 		if (sample_count > 0) {
+			led_avg = led_sum / sample_count;
 		    vcc_avg = vcc_sum / sample_count;
 		    min_5_avg = min_5_sum / sample_count;
 		    plus_5_avg = plus_5_sum / sample_count;
@@ -699,7 +692,7 @@ void voltage_messung(void){
 		if(min_5_avg > 1500)
 				send_msg("Minus 5 volt is not OK \r\n");
 
-		vcc_avg = min_5_avg = plus_5_avg = vcc_sum = min_5_sum = plus_5_sum = sample_count = 0;
+		led = led_sum = led_avg = vcc = vcc_sum = vcc_avg = min_5 = min_5_sum = min_5_avg = plus_5 = plus_5_sum = plus_5_avg = sample_count = 0;
 
 }
 
