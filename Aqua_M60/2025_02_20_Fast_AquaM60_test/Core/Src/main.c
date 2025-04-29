@@ -6,7 +6,7 @@
   ******************************************************************************
   * @attention
   *
-  * Copyright (c) 2025 STMicroelectronics.
+  * Copyright (c) 2024 STMicroelectronics.
   * All rights reserved.
   *
   * This software is licensed under terms that can be found in the LICENSE file
@@ -21,8 +21,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include <string.h>
 #include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdbool.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -32,7 +34,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
+#define NUM_CHANNELS 3
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -43,29 +45,52 @@
 /* Private variables ---------------------------------------------------------*/
 ADC_HandleTypeDef hadc1;
 ADC_HandleTypeDef hadc2;
-
-I2C_HandleTypeDef hi2c2;
+DMA_HandleTypeDef hdma_adc1;
 
 SPI_HandleTypeDef hspi2;
 
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
-uint32_t ms_counter = 0;
+char uart_buffer[50];
+uint32_t adc_dma_buffer[NUM_CHANNELS];  // Stores ADC results
+uint16_t vcc = 0;
+uint32_t vcc_sum = 0;
+uint16_t vcc_avg = 0;
+
+uint16_t led = 0;
+uint32_t led_sum = 0;
+uint16_t led_avg = 0;
+
+uint16_t plus_5 = 0;
+uint32_t plus_5_sum = 0;
+uint16_t plus_5_avg = 0;
+
+uint16_t min_5 = 0;
+uint32_t min_5_sum = 0;
+uint16_t min_5_avg = 0;
+
+uint32_t sample_count = 0;
+
+char volt[100];
+bool buttonPreviouslyPressed = false;
+uint32_t buttonPressStart = 0;
+
+uint16_t start_time;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_USART2_UART_Init(void);
-static void MX_I2C2_Init(void);
-static void MX_SPI2_Init(void);
 static void MX_ADC1_Init(void);
 static void MX_ADC2_Init(void);
+static void MX_SPI2_Init(void);
 /* USER CODE BEGIN PFP */
-void voltage_messung(void);
-void screen_validate(void);
 void send_msg(char *msg);
+void screen_validate(void);
+void voltage_messung(void);
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -102,12 +127,13 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_USART2_UART_Init();
-  MX_I2C2_Init();
-  MX_SPI2_Init();
   MX_ADC1_Init();
   MX_ADC2_Init();
+  MX_SPI2_Init();
   /* USER CODE BEGIN 2 */
+  send_msg("Press Button for Start.....\r\n");
 
   /* USER CODE END 2 */
 
@@ -119,82 +145,107 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 
-	  if(HAL_GPIO_ReadPin(B1_GPIO_Port, B1_Pin) == 0){
-//	  if(HAL_GPIO_ReadPin(sw_0_GPIO_Port, sw_0_Pin) || HAL_GPIO_ReadPin(sw_1_GPIO_Port, sw_1_Pin) == 0){
+	  GPIO_PinState buttonState = HAL_GPIO_ReadPin(sw_GPIO_Port, sw_Pin);
 
-		  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
+	  	      if (buttonState == GPIO_PIN_SET) // Button is being pressed
+	  	      {
+	  	          if (!buttonPreviouslyPressed)
+	  	          {
+	  	              // First time seeing the button pressed
+	  	              buttonPressStart = HAL_GetTick();
+	  	              buttonPreviouslyPressed = 1;
+	  	          }
+	  	          else
+	  	          {
+	  	              // Button is still being held
+	  	              if ((HAL_GetTick() - buttonPressStart) >= 2000)
+	  	              {
+	  	                  // Button held for 3 seconds → RESET
+	  	            	  send_msg("\r\n\r\n Reseting Device.... \r\n\r\n");
+	  	            	  HAL_Delay(100);
+	  	                  __NVIC_SystemReset();
+	  	              }
+	  	          }
+	  	      }
+	  	      else
+	  	      {
+	  	          if (buttonPreviouslyPressed)
+	  	          {
+	  	              // Button was released — check if it was a short press
+	  	              if ((HAL_GetTick() - buttonPressStart) < 2000)
+	  	              {
 
-		  /*
-		  		   * 	das Gerät einschalten
-		  		   * 	1,	Press button through relay
-		  		   * 	2,	Start R1 Relay
-		  		   * 	3,	After 200 mili-second stop R1 Relay
-		  		   */
-		  		  	  // At time 0, set pin 1 HIGH
-		  		  	  HAL_Delay(10);
-		  		  	  HAL_GPIO_WritePin(GPIOC, R1_Pin, GPIO_PIN_SET);
-		  		  	  send_msg("start device ! \r\n");
+	  	            	// Short press → run your code
+	  	            	// Your one-click action here
 
-		  		  	  // At 200 mili second, pin 1 should go LOW
-		  		  	  HAL_Delay(200);
-		  		  	  HAL_GPIO_WritePin(GPIOC, R1_Pin, GPIO_PIN_RESET);
-
-
-		  		  /*
-		  		   *	Einschalten des LED-Lichts
-		  		   * 	1,	Press button through relay for 2500 mili-second
-		  		   * 	2,	after 3500 mili-second of release of R1 relay
-		  		   * 	3,	Start R2 Relay
-		  		   * 	4,	After 2500 mili-second stop R2 Relay
-		  		   */
-		  		  	  // After 3600 mili second(3,6 second), set pin 2 HIGH
-		  		   	   HAL_Delay(3500);
-		  		   	   HAL_GPIO_WritePin(GPIOC, R2_Pin, GPIO_PIN_SET);
-		  		   	   send_msg("start LED light ! \r\n");
-
-		  		   	  // After 2500 mili-second, set pin 2 LOW
-		  		   	   HAL_Delay(2500);
-		  		   	   HAL_GPIO_WritePin(GPIOC, R2_Pin, GPIO_PIN_RESET);
-
-		  		  /*
-		  		   * 	Starten einer Spannungsmessung
-		  		   */
-		  		   	   HAL_Delay(200);
-		  		   	   send_msg("start voltage measuring ! \r\n");
-		  		   	   voltage_messung();
-
-		  		  /*
-		  		   *	einen Bildschirm validieren
-		  		   */
-		  		   	   HAL_Delay(100);
-		  		   	   send_msg("start display validating ! \r\n");
-		  		   	   screen_validate();
+	  	               /*
+	  	            	* 	das Gerät einschalten
+	  	            	* 	1,	Press button through relay
+	  	            	* 	2,	Start R1 Relay
+	  	            	* 	3,	After 200 mili-second stop R1 Relay
+	  	            	*/
+	  	            		      // At time 0, set pin 1 HIGH
+	  	            		           	   send_msg("start device ! \r\n");
+//	            	  		  		  	HAL_GPIO_WritePin(GPIOC, R1_Pin, GPIO_PIN_RESET);
+//	            	  		  	// At 200 mili second, pin 1 should go LOW
+//	            	  		  		  	HAL_Delay(200);
+//	            	  		  		  	HAL_GPIO_WritePin(GPIOC, R1_Pin, GPIO_PIN_SET);
 
 
-		  		  /*
-		  		   *	das Gerät einschalten
-		  		   * 	1,	Press button through relay
-		  		   * 	2,	Start R1 Relay
-		  		   * 	3,	After 2500 mili-second stop R1 Relay
-		  		   */
-		  		   	   // After validating screen, set pin 1 HIGH
-		  		   	   HAL_Delay(10);
-		  		   	   HAL_GPIO_WritePin(GPIOC, R1_Pin, GPIO_PIN_SET);
-		  		   	   send_msg("stop device ! \r\n\r\n\r\n");
-		  		   	   // After 2500 mili second, pin 1 should go LOW
-		  		   	   HAL_Delay(2500);
-		  		   	   HAL_GPIO_WritePin(GPIOC, R1_Pin, GPIO_PIN_RESET);
-
-	  }
-
-	  else {
-		  HAL_GPIO_WritePin(GPIOC, R1_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(GPIOC, R2_Pin, GPIO_PIN_RESET);
-		  HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_SET);
-
-	  }
+	  	               /*
+	  	            	*	Einschalten des LED-Lichts
+	  	            	* 	1,	Press button through relay for 2500 mili-second
+	  	            	* 	2,	after 3500 mili-second of release of R1 relay
+	  	            	* 	3,	Start R2 Relay
+	  	            	* 	4,	After 2500 mili-second stop R2 Relay
+	  	            	*/
+	  	            		     // After 3600 mili second(3,6 second), set pin 2 HIGH
+//	            	  		  		   HAL_Delay(3500);
+//	            	  		  		   send_msg("start LED light & Measurement ! \r\n");
+//	            	  		  		   HAL_GPIO_WritePin(GPIOC, R2_Pin, GPIO_PIN_RESET);
+//	            	  		  	// After 2500 mili-second, set pin 2 LOW
+//	            	  		  		   HAL_Delay(2500);
+//	            	  		  		   HAL_GPIO_WritePin(GPIOC, R2_Pin, GPIO_PIN_SET);
 
 
+	  	            	/*
+	  	            	 * 	Starten einer Spannungsmessung
+	  	            	 */
+//	           						HAL_Delay(200);
+	  	            		        send_msg("start voltage measuring ! \r\n");
+	  	            		        voltage_messung();
+
+	  	            	/*
+	  	            	 *	einen Bildschirm validieren
+	  	            	 */
+//	            	  		  		 HAL_Delay(100);
+	  	            		         send_msg("start display validating ! \r\n");
+	            	  		  		 screen_validate();
+
+
+	  	            	/*
+	  	            	 *	das Gerät einschalten
+	  	            	 * 	1,	Press button through relay
+	  	            	 * 	2,	Start R1 Relay
+	  	            	 * 	3,	After 2500 mili-second stop R1 Relay
+	  	            	 */
+
+	  	            		    // After validating screen, set pin 1 HIGH
+//	            	  		  		  HAL_Delay(10);
+//	            	  		  		  HAL_GPIO_WritePin(GPIOC, R1_Pin, GPIO_PIN_RESET);
+	  	            		         send_msg("stop device ! \r\n\r\n");
+//	            	  		  	// After 2500 mili second, pin 1 should go LOW
+//	            	  		  		  HAL_Delay(2500);
+//	            	  		  		  HAL_GPIO_WritePin(GPIOC, R1_Pin, GPIO_PIN_SET);
+//	            	  		  		  HAL_Delay(2000);
+
+
+	  	              }
+	  	            buttonPreviouslyPressed = 0;
+
+	  	      }
+
+	  	    }
   }
   /* USER CODE END 3 */
 }
@@ -237,9 +288,8 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2|RCC_PERIPHCLK_I2C2;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2;
   PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
-  PeriphClkInit.I2c2ClockSelection = RCC_I2C2CLKSOURCE_HSI;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
@@ -271,12 +321,12 @@ static void MX_ADC1_Init(void)
   hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV1;
   hadc1.Init.Resolution = ADC_RESOLUTION_12B;
   hadc1.Init.ScanConvMode = ADC_SCAN_ENABLE;
-  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = ENABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc1.Init.NbrOfConversion = 4;
+  hadc1.Init.NbrOfConversion = 3;
   hadc1.Init.DMAContinuousRequests = DISABLE;
   hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   hadc1.Init.LowPowerAutoWait = DISABLE;
@@ -324,15 +374,6 @@ static void MX_ADC1_Init(void)
   {
     Error_Handler();
   }
-
-  /** Configure Regular Channel
-  */
-  sConfig.Channel = ADC_CHANNEL_9;
-  sConfig.Rank = ADC_REGULAR_RANK_4;
-  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
   /* USER CODE BEGIN ADC1_Init 2 */
 
   /* USER CODE END ADC1_Init 2 */
@@ -362,13 +403,13 @@ static void MX_ADC2_Init(void)
   hadc2.Instance = ADC2;
   hadc2.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV1;
   hadc2.Init.Resolution = ADC_RESOLUTION_12B;
-  hadc2.Init.ScanConvMode = ADC_SCAN_ENABLE;
-  hadc2.Init.ContinuousConvMode = DISABLE;
+  hadc2.Init.ScanConvMode = ADC_SCAN_DISABLE;
+  hadc2.Init.ContinuousConvMode = ENABLE;
   hadc2.Init.DiscontinuousConvMode = DISABLE;
   hadc2.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
   hadc2.Init.ExternalTrigConv = ADC_SOFTWARE_START;
   hadc2.Init.DataAlign = ADC_DATAALIGN_RIGHT;
-  hadc2.Init.NbrOfConversion = 2;
+  hadc2.Init.NbrOfConversion = 1;
   hadc2.Init.DMAContinuousRequests = DISABLE;
   hadc2.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
   hadc2.Init.LowPowerAutoWait = DISABLE;
@@ -380,7 +421,7 @@ static void MX_ADC2_Init(void)
 
   /** Configure Regular Channel
   */
-  sConfig.Channel = ADC_CHANNEL_11;
+  sConfig.Channel = ADC_CHANNEL_1;
   sConfig.Rank = ADC_REGULAR_RANK_1;
   sConfig.SingleDiff = ADC_SINGLE_ENDED;
   sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
@@ -390,67 +431,9 @@ static void MX_ADC2_Init(void)
   {
     Error_Handler();
   }
-
-  /** Configure Regular Channel
-  */
-  sConfig.Channel = ADC_CHANNEL_3;
-  sConfig.Rank = ADC_REGULAR_RANK_2;
-  sConfig.SingleDiff = ADC_DIFFERENTIAL_ENDED;
-  if (HAL_ADC_ConfigChannel(&hadc2, &sConfig) != HAL_OK)
-  {
-    Error_Handler();
-  }
   /* USER CODE BEGIN ADC2_Init 2 */
 
   /* USER CODE END ADC2_Init 2 */
-
-}
-
-/**
-  * @brief I2C2 Initialization Function
-  * @param None
-  * @retval None
-  */
-static void MX_I2C2_Init(void)
-{
-
-  /* USER CODE BEGIN I2C2_Init 0 */
-
-  /* USER CODE END I2C2_Init 0 */
-
-  /* USER CODE BEGIN I2C2_Init 1 */
-
-  /* USER CODE END I2C2_Init 1 */
-  hi2c2.Instance = I2C2;
-  hi2c2.Init.Timing = 0x00201D2B;
-  hi2c2.Init.OwnAddress1 = 0;
-  hi2c2.Init.AddressingMode = I2C_ADDRESSINGMODE_7BIT;
-  hi2c2.Init.DualAddressMode = I2C_DUALADDRESS_DISABLE;
-  hi2c2.Init.OwnAddress2 = 0;
-  hi2c2.Init.OwnAddress2Masks = I2C_OA2_NOMASK;
-  hi2c2.Init.GeneralCallMode = I2C_GENERALCALL_DISABLE;
-  hi2c2.Init.NoStretchMode = I2C_NOSTRETCH_DISABLE;
-  if (HAL_I2C_Init(&hi2c2) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Analogue filter
-  */
-  if (HAL_I2CEx_ConfigAnalogFilter(&hi2c2, I2C_ANALOGFILTER_ENABLE) != HAL_OK)
-  {
-    Error_Handler();
-  }
-
-  /** Configure Digital filter
-  */
-  if (HAL_I2CEx_ConfigDigitalFilter(&hi2c2, 0) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /* USER CODE BEGIN I2C2_Init 2 */
-
-  /* USER CODE END I2C2_Init 2 */
 
 }
 
@@ -529,6 +512,22 @@ static void MX_USART2_UART_Init(void)
 }
 
 /**
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void)
+{
+
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA1_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA1_Channel1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Channel1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Channel1_IRQn);
+
+}
+
+/**
   * @brief GPIO Initialization Function
   * @param None
   * @retval None
@@ -549,10 +548,10 @@ static void MX_GPIO_Init(void)
   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(cam_start_GPIO_Port, cam_start_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOC, R1_Pin|R2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOC, R1_Pin|R2_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, raspi_start_Pin|raspi_run_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
@@ -571,33 +570,26 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pin = cam_start_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(cam_start_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pins : sw_1_Pin sw_0_Pin */
-  GPIO_InitStruct.Pin = sw_1_Pin|sw_0_Pin;
+  /*Configure GPIO pin : sw_Pin */
+  GPIO_InitStruct.Pin = sw_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  HAL_GPIO_Init(sw_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : R1_Pin */
-  GPIO_InitStruct.Pin = R1_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(R1_GPIO_Port, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : R2_Pin */
-  GPIO_InitStruct.Pin = R2_Pin;
+  /*Configure GPIO pins : R1_Pin R2_Pin */
+  GPIO_InitStruct.Pin = R1_Pin|R2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(R2_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
 
   /*Configure GPIO pins : raspi_start_Pin raspi_run_Pin */
   GPIO_InitStruct.Pin = raspi_start_Pin|raspi_run_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* USER CODE BEGIN MX_GPIO_Init_2 */
@@ -605,59 +597,11 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
-
-void voltage_messung(void){
-
-	uint16_t adc_values[5];
-
-	HAL_ADC_Start(&hadc1); // Start ADC Conversion
-	HAL_ADC_PollForConversion(&hadc1, 100); // Poll ADC1 Peripheral
-	adc_values[0] = HAL_ADC_GetValue(&hadc1); // Read ADC Conversion Resulte
-	if(adc_values[0] > 2)
-			return send_msg("voltage is ok \r\n");
-
-	HAL_ADC_Start(&hadc1); // Start ADC Conversion
-	HAL_ADC_PollForConversion(&hadc1, 100); // Poll ADC1 Peripheral
-	adc_values[1] = HAL_ADC_GetValue(&hadc1); // Read ADC Conversion Resulte
-	if(adc_values[1] > 2)
-			return send_msg("voltage less then 2 \r\n");
-
-	HAL_ADC_Start(&hadc1); // Start ADC Conversion
-	HAL_ADC_PollForConversion(&hadc1, 100); // Poll ADC1 Peripheral
-	adc_values[2] = HAL_ADC_GetValue(&hadc1); // Read ADC Conversion Resulte
-	if(adc_values[2] > 2)
-			return send_msg("voltage less then 2 \r\n");
-
-	HAL_ADC_Start(&hadc1); // Start ADC Conversion
-	HAL_ADC_PollForConversion(&hadc1, 100); // Poll ADC1 Peripheral
-	adc_values[3] = HAL_ADC_GetValue(&hadc1); // Read ADC Conversion Resulte
-	if(adc_values[3] > 2)
-			return send_msg("voltage less then 2 \r\n");
-
-	HAL_ADC_Stop(&hadc1);
-
-	HAL_ADC_Start(&hadc2); // Start ADC Conversion
-	HAL_ADC_PollForConversion(&hadc2, 100); // Poll ADC1 Peripheral
-	adc_values[4] = HAL_ADC_GetValue(&hadc2); // Read ADC Conversion Resulte
-	if(adc_values[4] > 2)
-			return send_msg("voltage less then 2 \r\n");
-
-	HAL_ADC_Start(&hadc2); // Start ADC Conversion
-	HAL_ADC_PollForConversion(&hadc2, 100); // Poll ADC1 Peripheral
-	adc_values[5] = HAL_ADC_GetValue(&hadc2); // Read ADC Conversion Resulte
-	if(adc_values[5] > 2)
-			return send_msg("voltage less then 2 \r\n");
-
-	HAL_ADC_Stop(&hadc2);
-
-}
-
-
 void screen_validate(void){
 
 	uint8_t RX_Buffer [2];
 
-	if(HAL_GPIO_ReadPin(raspi_run_GPIO_Port, raspi_run_Pin) == 1){
+	if(HAL_GPIO_ReadPin(raspi_start_GPIO_Port, raspi_start_Pin) == 1){
 		send_msg("raspberry pi is OK \r\n");		// send message that raspberry pi is OK
 
 		// start raspberry pi by giving signal to cam_start pin
@@ -666,18 +610,18 @@ void screen_validate(void){
 		HAL_GPIO_WritePin(cam_start_GPIO_Port, cam_start_Pin, GPIO_PIN_RESET);
 		HAL_Delay(1500);
 
-		if(HAL_GPIO_ReadPin(raspi_start_GPIO_Port, raspi_start_Pin) == 1)send_msg("raspberry pi is running \r\n");		// send message raspberry pi is running
+		if(HAL_GPIO_ReadPin(raspi_run_GPIO_Port, raspi_run_Pin) == 1)send_msg("raspberry pi is running \r\n");		// send message raspberry pi is running
 		// check if the raspberry pi is running or not
-		while(HAL_GPIO_ReadPin(raspi_start_GPIO_Port, raspi_start_Pin) == 1){
+		while(HAL_GPIO_ReadPin(raspi_run_GPIO_Port, raspi_run_Pin) == 1){
 
-			HAL_SPI_Receive(&hspi2, RX_Buffer, sizeof(RX_Buffer), HAL_MAX_DELAY); //Receiving data in Blocking mode
+			HAL_SPI_Receive(&hspi2, RX_Buffer, sizeof(RX_Buffer), 9000); //Receiving data in Blocking mode
 			uint8_t data = ((RX_Buffer[0] << 4) | RX_Buffer[1]);
 
 			if(data == 0x2A){
 				send_msg("screen is working OK \r\n");
 			}
 			else if(data == 0x24){
-				send_msg("screen is OK \r\n");
+				send_msg("screen is not OK \r\n");
 			}
 			else send_msg("Reset STM Board \r\n");
 
@@ -688,10 +632,80 @@ void screen_validate(void){
 	else send_msg("Raspberry pi is not working ! \r\n");
 }
 
+void voltage_messung(void){
+
+	for(int i = 0; i < 20; i++){
+		HAL_ADC_Start(&hadc2); // Start ADC Conversion
+		HAL_ADC_PollForConversion(&hadc2, HAL_MAX_DELAY); // Poll ADC1 Peripheral
+		led = HAL_ADC_GetValue(&hadc2); // Read ADC Conversion Resulte
+		HAL_ADC_Stop(&hadc2);
+
+		led_sum += led;
+	}
+
+	led_avg = led_sum / 20;
+
+
+	for (int i = 0; i < NUM_CHANNELS; i++) {
+	    adc_dma_buffer[i] = 0;
+	}
+
+	// Start ADC with DMA
+	HAL_ADC_Start_DMA(&hadc1, adc_dma_buffer, NUM_CHANNELS);
+
+	start_time = HAL_GetTick();
+
+	while((HAL_GetTick()-start_time) < 2000){
+
+
+		// You can use adc_dma_buffer[0] and adc_dma_buffer[1] any time!
+		  	 plus_5 = adc_dma_buffer[0];
+		  	 vcc = adc_dma_buffer[1];
+		  	 min_5 = adc_dma_buffer[2];
+
+		sprintf(volt, "/* %d, %d, %d */ \r\n", vcc,  plus_5, min_5);
+		HAL_UART_Transmit(&huart2, (uint8_t*)volt, strlen(volt), HAL_MAX_DELAY);
+
+		vcc_sum += vcc;
+		min_5_sum += min_5;
+		plus_5_sum += plus_5;
+		sample_count++;
+
+
+	}
+
+	HAL_ADC_Stop_DMA(&hadc1);
+
+
+	// Calculate averages
+		if (sample_count > 0) {
+		    vcc_avg = vcc_sum / sample_count;
+		    min_5_avg = min_5_sum / sample_count;
+		    plus_5_avg = plus_5_sum / sample_count;
+		}
+
+		sprintf(volt, "/* led_avg = %d, Vcc_avg = %d, plus_5_avg = %d, min_5_avg = %d */ \r\n", led_avg, vcc_avg, plus_5_avg, min_5_avg);
+		HAL_UART_Transmit(&huart2, (uint8_t*)volt, strlen(volt), HAL_MAX_DELAY);
+
+		if (led_avg > 150)
+				send_msg("LED is not OK \r\n");
+
+		if (vcc_avg < 4000)
+				send_msg("Vcc Volt is not OK ! \r\n");
+
+		if(plus_5_avg < 3000)
+				send_msg("Plus 5 Volt is not OK \r\n");
+
+		if(min_5_avg > 1500)
+				send_msg("Minus 5 volt is not OK \r\n");
+
+		vcc_avg = min_5_avg = plus_5_avg = vcc_sum = min_5_sum = plus_5_sum = sample_count = 0;
+
+}
+
 void send_msg(char *msg){
 	HAL_UART_Transmit(&huart2,(uint8_t *)msg, strlen(msg), HAL_MAX_DELAY);
 }
-
 /* USER CODE END 4 */
 
 /**

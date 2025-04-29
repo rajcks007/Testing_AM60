@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring comment="Rename resource &apos;2025_02_18_Fast_Display/Core/Inc/LCD16x2&apos; to &apos;LCD16x2.h&apos;" description="Rename resource &apos;LCD16x2&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="Core/Inc/LCD16x2" name="LCD16x2.h" stamp="1739866832209" updateReferences="true"/>
-</session>

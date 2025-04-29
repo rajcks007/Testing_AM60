@@ -156,9 +156,10 @@ int main(void)
   HAL_GPIO_WritePin(RW_PORT, RW_PIN, GPIO_PIN_RESET);
   lcd_init();
   lcd_put_cur(0, 0);
-  lcd_send_string("HELLO ");
-  lcd_send_string("WORLD ");
-//  lcd_put_cur(1, 0);
+  lcd_send_string("FAST GmbH");
+  HAL_Delay(2000);
+  lcd_put_cur(1, 0);
+  lcd_send_string("Aqua M60 Testing");
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -168,10 +169,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  lcd_send_string("HELLO ");
-	  HAL_Delay(2000);
-	  lcd_send_string("WORLD ");
-	  HAL_Delay(2000);
+	  HAL_GPIO_TogglePin(LD2_GPIO_Port, LD2_Pin);
+	  HAL_Delay(500);
 
   }
   /* USER CODE END 3 */
@@ -374,31 +373,32 @@ void lcd_put_cur(int row, int col)
             break;
     }
     lcd_send_cmd (col);
+    lcd_send_cmd (row);
 }
 
 void lcd_init (void)
 {
     // 4 bit initialisation
-    HAL_Delay(500);  // wait for >40ms
-    lcd_send_cmd (0x30);
-    HAL_Delay(5);  // wait for >4.1ms
-    lcd_send_cmd (0x30);
-    HAL_Delay(5);  // wait for >100us
-    lcd_send_cmd (0x20);
+	HAL_GPIO_WritePin(RS_PORT, RS_PIN, 0);
+    HAL_Delay(500);
+    lcd_send_cmd (0x03);
     HAL_Delay(5);
-    lcd_send_cmd (0x20);  // 4bit mode
+    lcd_send_cmd (0x03);
+    HAL_Delay(5);
+    lcd_send_cmd (0x03);
+    HAL_Delay(5);
+    lcd_send_cmd (0x02);		// 4bit mode
     HAL_Delay(10);
+    lcd_send_cmd (0x28);		// Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
+    HAL_Delay(10);
+    lcd_send_cmd (0x01);		// clear display
+    HAL_Delay(10);
+    lcd_send_cmd (0x0E);
+    HAL_Delay(10);
+    lcd_send_cmd (0x06);		//Entry mode set --> I/D = 1 (increment cursor) & S = 0 (no shift)
 
   // dislay initialisation
-    lcd_send_cmd (0x20); // Function set --> DL=0 (4 bit mode), N = 1 (2 line display) F = 0 (5x8 characters)
-    HAL_Delay(5);
-    lcd_send_cmd (0x08); //Display on/off control --> D=0,C=0, B=0  ---> display off
-    HAL_Delay(5);
-    lcd_send_cmd (0x01);  // clear display
-    HAL_Delay(5);
-    lcd_send_cmd (0x06); //Entry mode set --> I/D = 1 (increment cursor) & S = 0 (no shift)
-    HAL_Delay(5);
-    lcd_send_cmd (0x0C); //Display on/off control --> D = 1, C and B = 0. (Cursor and blink, last two bits)
+
 }
 
 void lcd_send_string (char *str)

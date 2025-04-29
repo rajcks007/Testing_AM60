@@ -1,11 +1,13 @@
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/arch=x86_64
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/name=Local
 LaunchTargetManager/org.eclipse.launchbar.core.launchTargetType.local,Local/os=win32
-configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:2025_02_20_Fast_AquaM60_test Debug
+configDescList=org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ADC_V1.1 Debug,org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ADC_V1.1 Debug (1),org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:2025_02_20_Fast_AquaM60_test Debug
 eclipse.preferences.version=1
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:2025_02_20_Fast_AquaM60_test\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:2025_02_20_Fast_AquaM60_test\ Debug/activeLaunchTarget=null\:---
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:2025_02_25_Fast_RasPi_cam\ Debug/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ADC_V1.1\ Debug\ (1)/activeLaunchMode=run
+org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:ADC_V1.1\ Debug/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Button_V0.1\ Debug\ (1)/activeLaunchMode=run
 org.eclipse.cdt.dsf.gdb.gdbRemotedescriptorType\:Button_V0.1\ Debug\ (1)/activeLaunchTarget=null\:---
 org.eclipse.launchbar.core.descriptorType.default\:2025_02_20_Fast_AquaM60_test\ Debug/activeLaunchMode=run
